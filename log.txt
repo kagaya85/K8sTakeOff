@@ -1,0 +1,102 @@
+'kubeadm log'
+
+        Unfortunately, an error has occurred:
+                timed out waiting for the condition
+
+        This error is likely caused by:
+                - The kubelet is not running
+                - The kubelet is unhealthy due to a misconfiguration of the node in some way (required cgroups disabled)
+
+        If you are on a systemd-powered system, you can try to troubleshoot the error with the following commands:
+                - 'systemctl status kubelet'
+                - 'journalctl -xeu kubelet'
+
+        Additionally, a control plane component may have crashed or exited when started by the container runtime.
+        To troubleshoot, list all containers using your preferred container runtimes CLI.
+
+        Here is one example how you may list all Kubernetes containers running in cri-o/containerd using crictl:
+                - 'crictl --runtime-endpoint /run/containerd/containerd.sock ps -a | grep kube | grep -v pause'
+                Once you have found the failing container, you can inspect its logs with:
+                - 'crictl --runtime-endpoint /run/containerd/containerd.sock logs CONTAINERID'
+
+couldn't initialize a Kubernetes cluster
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/init.runWaitControlPlanePhase
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/init/waitcontrolplane.go:114
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow.(*Runner).Run.func1
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow/runner.go:234
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow.(*Runner).visitAll
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow/runner.go:421
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow.(*Runner).Run
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow/runner.go:207
+k8s.io/kubernetes/cmd/kubeadm/app/cmd.newCmdInit.func1
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/init.go:151
+k8s.io/kubernetes/vendor/github.com/spf13/cobra.(*Command).execute
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/vendor/github.com/spf13/cobra/command.go:850
+k8s.io/kubernetes/vendor/github.com/spf13/cobra.(*Command).ExecuteC
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/vendor/github.com/spf13/cobra/command.go:958
+k8s.io/kubernetes/vendor/github.com/spf13/cobra.(*Command).Execute
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/vendor/github.com/spf13/cobra/command.go:895
+k8s.io/kubernetes/cmd/kubeadm/app.Run
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/kubeadm.go:50
+main.main
+        _output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/kubeadm.go:25
+runtime.main
+        /usr/local/go/src/runtime/proc.go:204
+runtime.goexit
+        /usr/local/go/src/runtime/asm_amd64.s:1374
+error execution phase wait-control-plane
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow.(*Runner).Run.func1
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow/runner.go:235
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow.(*Runner).visitAll
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow/runner.go:421
+k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow.(*Runner).Run
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/phases/workflow/runner.go:207
+k8s.io/kubernetes/cmd/kubeadm/app/cmd.newCmdInit.func1
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/cmd/init.go:151
+k8s.io/kubernetes/vendor/github.com/spf13/cobra.(*Command).execute
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/vendor/github.com/spf13/cobra/command.go:850
+k8s.io/kubernetes/vendor/github.com/spf13/cobra.(*Command).ExecuteC
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/vendor/github.com/spf13/cobra/command.go:958
+k8s.io/kubernetes/vendor/github.com/spf13/cobra.(*Command).Execute
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/vendor/github.com/spf13/cobra/command.go:895
+k8s.io/kubernetes/cmd/kubeadm/app.Run
+        /workspace/src/k8s.io/kubernetes/_output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/app/kubeadm.go:50
+main.main
+        _output/dockerized/go/src/k8s.io/kubernetes/cmd/kubeadm/kubeadm.go:25
+runtime.main
+        /usr/local/go/src/runtime/proc.go:204
+runtime.goexit
+        /usr/local/go/src/runtime/asm_amd64.s:1374
+
+---
+
+'systemctl status kubelet'
+
+● kubelet.service - kubelet: The Kubernetes Node Agent
+   Loaded: loaded (/usr/lib/systemd/system/kubelet.service; enabled; vendor preset: disabled)
+  Drop-In: /usr/lib/systemd/system/kubelet.service.d
+           └─10-kubeadm.conf
+   Active: active (running) since Thu 2020-12-17 20:48:18 CST; 6min ago
+     Docs: https://kubernetes.io/docs/
+ Main PID: 10688 (kubelet)
+    Tasks: 18
+   Memory: 37.6M
+   CGroup: /system.slice/kubelet.service
+           └─10688 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf ...
+
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.161585   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.261944   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.362297   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.462629   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.562916   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.663161   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.763546   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.863925   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:35 localhost.localdomain kubelet[10688]: E1217 07:54:35.964162   10688 kubelet.go:2240] node "localhost.localdomain" not found
+Dec 17 20:54:36 localhost.localdomain kubelet[10688]: E1217 07:54:36.064368   10688 kubelet.go:2240] node "localhost.localdomain" not found
+
+---
+'journalctl -xeu kubelet'
+
+CreatePodSandbox for pod "kube-scheduler-localhost.localdomain_kube-system(a28385ea64639c19ce25476016scheduler-localhost.localdomain_kube-system(a28385ea64639c19ce254760161b1d3b)" failed: rpc error: code = Unknown desc = failed to get sandboxb1d3b)" failed: rpc error: code = Unknown desc = failed to get sandbox image "k8s.gcr.io/pause:3.1": failed to pull image "k8s.gcr.io/pause:3image "k8s.gcr.io/pause:3.1": failed to pull image "k8s.gcr.io/pause:3.1": failed to pull and unpack image "k8s.gcr.io/pause:3.1":
+
