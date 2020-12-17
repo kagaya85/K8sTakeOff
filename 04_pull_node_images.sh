@@ -4,6 +4,15 @@
 CALICO_VERSION=v3.17.1
 KUBE_VERSION=v1.20.0
 KUBE_PAUSE_VERSION=3.2
+DEV=ens160
+
+echo "change node hostname"
+ipname=$(ifconfig $DEV | sed -n '2p' | awk '{print $2}' | sed 's/\./-/g')
+nodetype=worker
+
+echo "${ipname}-${nodetype}" >/etc/hostname
+echo "127.0.0.1   ${ipname}-${nodetype}" >>/etc/hosts
+sysctl kernel.hostname=${ipname}-${nodetype}
 
 echo "start pull calico images"
 
