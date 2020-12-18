@@ -5,8 +5,8 @@ Tools=(epel-release bind-utils git vim zsh neofetch htop tree unzip ntpdate brid
 
 EpelFile=/etc/yum.repos.d/konimex-neofetch-epel-7.repo
 
-echo "export PS1=\"[%n@$(/sbin/ifconfig ens160 | sed -nr 's/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')]%~%# \"" >>$HOME/.zshrc &&
-    source $HOME/.zshrc
+# echo "export PS1=\"[%n@$(/sbin/ifconfig ens160 | sed -nr 's/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')]%~%# \"" >>$HOME/.zshrc &&
+#     source $HOME/.zshrc
 
 # yum -y update
 yum -y install wget

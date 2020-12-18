@@ -29,7 +29,7 @@ tar -xvf containerd-"$CONTAINERD_VERSION"-linux-amd64.tar.gz -C /usr/local/
 
 sudo mkdir -p /etc/containerd/
 # https://github.com/kubernetes-sigs/cri-tools/issues/436#issuecomment-464290289
-# containerd config default >/etc/containerd/config.tomlcric
+# containerd config default >/etc/containerd/config.toml
 cat <<EOF | sudo tee /etc/containerd/config.toml
 version = 2
 root = "/var/lib/containerd"
