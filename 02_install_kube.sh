@@ -3,9 +3,6 @@
 
 set -e
 
-# 关闭 selinux
-setenforce 0
-
 # K8s yum 源
 rm -f /etc/yum.repos.d/kubernetes.repo
 cat <<EOF >/etc/yum.repos.d/kubernetes.repo
