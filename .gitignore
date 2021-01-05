@@ -1,2 +1,4 @@
 .DS_Store
 net.sh
+chart
+manifests/localpv.yaml

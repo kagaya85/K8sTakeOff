@@ -52,6 +52,12 @@ net.bridge.bridge-nf-call-arptables = 1
 net.ipv4.ip_forward = 1
 EOF
 
+echo "###############################################"
+echo "config nfs"
+# echo "/data   10.176.120.0/255.255.248.0(rw,no_root_squash,no_subtree_check)" >/etc/exports
+sudo systemctl enable nfs
+sudo systemctl start nfs
+
 sudo sysctl --system
 
 # Check ports

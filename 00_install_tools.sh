@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author Kagaya
 
-Tools=(epel-release bind-utils git vim zsh neofetch htop tree unzip ntpdate bridge-utils go)
+Tools=(epel-release bind-utils git vim zsh neofetch htop tree unzip ntpdate bridge-utils nfs-utils go)
 
 EpelFile=/etc/yum.repos.d/konimex-neofetch-epel-7.repo
 
