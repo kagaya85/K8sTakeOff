@@ -3,11 +3,13 @@
 # config time
 echo "###############################################"
 echo "Config Time Zone"
-cp -p $HOME/.zshrc $HOME/.zshrc.bak$(date '+%Y%m%d%H%M%S')
-echo "TZ='Asia/Shanghai'; export TZ" >>$HOME/.zshrc
-source $HOME/.zshrc
 
-ntpdate -u cn.ntp.org.cn
+yum install -y chrony
+systemctl start chronyd
+systemctl enable chronyd
+timedatectl set-timezone Asia/Shanghai
+timedatectl set-ntp yes
+date -R
 
 echo "###############################################"
 echo "Stop firewalld"
