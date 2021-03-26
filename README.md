@@ -1,8 +1,13 @@
 # K8sTakeOff
 
+### Environment requirement
+
+* Linux Kernel 4.11+
+* Enable iptables
+
 ### Version
 
-* kubernetes v1.20.0
+* kubernetes v1.20.0+
 * containerd v1.4.3
 * calico v3.17.1
 * pause v3.2
