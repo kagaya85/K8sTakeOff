@@ -20,7 +20,7 @@ yum clean all
 yum makecache -y
 yum repolist all
 
-sudo yum install -y kubelet-1.20.0 kubeadm-1.20.0 kubectl-1.20.0 --disableexcludes=kubernetes
+sudo yum install -y kubelet-1.23.0 kubeadm-1.23.0 kubectl-1.23.0 --disableexcludes=kubernetes
 
 # Check installed Kubernetes packages
 sudo yum list installed | grep kube

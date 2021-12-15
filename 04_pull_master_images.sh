@@ -1,12 +1,13 @@
 #!/bin/bash
 # Author Kagaya
 
-CALICO_VERSION=v3.17.1
-KUBE_VERSION=v1.20.0
-KUBE_PAUSE_VERSION=3.2
-ETCD_VERSION=3.4.13-0
+CALICO_VERSION=v3.21.2
+KUBE_VERSION=v1.23.0
+KUBE_PAUSE_VERSION=3.6
+ETCD_VERSION=3.5.1-0
 CORE_DNS_VERSION=1.7.0
-DEV=ens160
+DEV=eth0
+CMD=crictl
 
 echo "change master hostname"
 ipname=$(ifconfig $DEV | sed -n '2p' | awk '{print $2}' | sed 's/\./-/g')
@@ -18,14 +19,14 @@ sysctl kernel.hostname=${ipname}-${nodetype}
 
 echo "start pull calico images"
 
-crictl pull calico/cni:$CALICO_VERSION
-crictl pull calico/pod2daemon-flexvol:$CALICO_VERSION
-crictl pull calico/node:$CALICO_VERSION
-crictl pull calico/kube-controllers:$CALICO_VERSION
+eval $CMD pull calico/cni:$CALICO_VERSION
+eval $CMD pull calico/pod2daemon-flexvol:$CALICO_VERSION
+eval $CMD pull calico/node:$CALICO_VERSION
+eval $CMD pull calico/kube-controllers:$CALICO_VERSION
 
 echo "start pull kubernetes images"
 
-ALIYUN_URL=registry.cn-hangzhou.aliyuncs.com/kagaya
+ALIYUN_URL=registry.cn-hangzhou.aliyuncs.com/google_containers
 
 images=(
     kube-proxy:"${KUBE_VERSION}"
@@ -38,7 +39,7 @@ images=(
 )
 
 for imageName in "${images[@]}"; do
-    crictl pull $ALIYUN_URL/"$imageName"
+    eval $CMD pull $ALIYUN_URL/"$imageName"
 done
 
-crictl images
+eval $CMD images

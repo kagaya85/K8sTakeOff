@@ -1,8 +1,8 @@
 #!/bin/bash
 
-KUBE_VERSION=v1.20.0
-IMAGE_REPOSITORY=registry.cn-hangzhou.aliyuncs.com/kagaya
-DEV=ens160
+KUBE_VERSION=v1.23.0
+IMAGE_REPOSITORY=registry.cn-hangzhou.aliyuncs.com/google_containers
+DEV=eth0
 
 # Reset firstly if ran kubeadm init before
 kubeadm reset -f
