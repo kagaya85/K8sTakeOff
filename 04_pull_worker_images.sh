@@ -24,7 +24,7 @@ eval $CMD pull calico/kube-controllers:$CALICO_VERSION
 
 echo "start pull kubernetes images"
 
-ALIYUN_URL=registry.cn-hangzhou.aliyuncs.com/kagaya
+ALIYUN_URL=registry.cn-hangzhou.aliyuncs.com/google_containers
 
 eval $CMD pull $ALIYUN_URL/kube-proxy:"${KUBE_VERSION}"
 eval $CMD pull $ALIYUN_URL/pause:"${KUBE_PAUSE_VERSION}"
