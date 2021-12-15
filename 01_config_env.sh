@@ -28,20 +28,20 @@ sudo sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
 sudo getenforce
 
 # Turn off Swap
-echo "###############################################"
-echo "Turn off Swap"
-free -m
-sudo cat /proc/swaps
+# echo "###############################################"
+# echo "Turn off Swap"
+# free -m
+# sudo cat /proc/swaps
 
-sudo swapoff -a
+# sudo swapoff -a
 
-sudo cp -p /etc/fstab /etc/fstab.bak$(date '+%Y%m%d%H%M%S')
-sudo sed -i "s/\/dev\/mapper\/rhel-swap/\#\/dev\/mapper\/rhel-swap/g" /etc/fstab
-sed -i "s/\/dev\/mapper\/centos-swap/\#\/dev\/mapper\/centos-swap/g" /etc/fstab
-sudo mount -a
+# sudo cp -p /etc/fstab /etc/fstab.bak$(date '+%Y%m%d%H%M%S')
+# sudo sed -i "s/\/dev\/mapper\/rhel-swap/\#\/dev\/mapper\/rhel-swap/g" /etc/fstab
+# sed -i "s/\/dev\/mapper\/centos-swap/\#\/dev\/mapper\/centos-swap/g" /etc/fstab
+# sudo mount -a
 
-free -m
-sudo cat /proc/swaps
+# free -m
+# sudo cat /proc/swaps
 
 # Setup iptables (routing)
 echo "###############################################"
