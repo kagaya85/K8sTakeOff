@@ -2,7 +2,7 @@
 
 set -e
 
-kubectl apply -f ./manifest/metrics-server-insecure.yaml
+kubectl apply -f ./manifests/metrics-server-insecure.yaml
 
 sleep 10
 
@@ -16,6 +16,7 @@ kubectl get pods -n kube-system -l k8s-app=metrics-server
 kubectl get apiservice v1beta1.metrics.k8s.io -o yaml
 
 # Wait a while to let metrics server takes effect
+echo "Wait a while to let metrics server takes effect..."
 sleep 180
 
 kubectl top nodes
