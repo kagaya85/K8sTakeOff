@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author Kagaya
 
 echo ">>>Please execute this after join the cluster<<<"
 

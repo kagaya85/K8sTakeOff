@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author Kagaya
 
 KUBE_VERSION=v1.23.0
 IMAGE_REPOSITORY=registry.cn-hangzhou.aliyuncs.com/google_containers

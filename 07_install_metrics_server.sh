@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author Kagaya
 
 set -e
 
